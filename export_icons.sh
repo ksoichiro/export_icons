@@ -28,7 +28,7 @@
 #
 ################################################################################
 
-VERSION=1.0
+VERSION=1.1
 INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 OS_TYPE_ANDROID=Android
 OS_TYPE_IOS=iOS
@@ -80,7 +80,7 @@ function export_png() {
     mkdir -p "${output_export_dir}"
   fi
   log "Exporting input:${input_file} output:${output_file} size:${size}"
-  ${INKSCAPE} -z -D --file="${input_file}" --export-png="${output_file}" -w ${size} -h ${size} > /dev/null 2>&1
+  ${INKSCAPE} -z -C --file="${input_file}" --export-png="${output_file}" -w ${size} -h ${size} > /dev/null 2>&1
 }
 
 # Check inkscape command line binary
