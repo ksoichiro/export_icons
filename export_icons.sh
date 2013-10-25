@@ -28,7 +28,7 @@
 #
 ################################################################################
 
-VERSION=1.1
+VERSION=1.2
 INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 OS_TYPE_ANDROID=Android
 OS_TYPE_IOS=iOS
@@ -185,6 +185,7 @@ if [ "${os_type}" = "${OS_TYPE_IOS}" -o "${os_type}" = "${OS_TYPE_ALL}" ]; then
     # for iOS7
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-40.png 40
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-40@2x.png 80
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-60@2x.png 120
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-76.png 76
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-76@2x.png 152
     # for App Store
