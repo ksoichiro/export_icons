@@ -171,7 +171,7 @@ if [ "${os_type}" = "${OS_TYPE_ANDROID}" -o "${os_type}" = "${OS_TYPE_ALL}" ]; t
     size_mdpi=48
     size_hdpi=72
     size_xhdpi=96
-    size_xhhdpi=144
+    size_xxhdpi=144
     if [ ! -z "${base_size}" ]; then
       size_mdpi=${base_size}
       size_hdpi=`echo "${size_mdpi}*1.5" | bc`
