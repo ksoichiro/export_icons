@@ -75,7 +75,7 @@ Pageのサイズは 1024x1024px で作成しておくことを推奨します。
 
 ## 利用方法
 
-    ./export_icons.sh -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-v]
+    ./export_icons.sh -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]
 
 `-i INPUT_FILE`
 
@@ -100,6 +100,36 @@ Pageのサイズは 1024x1024px で作成しておくことを推奨します。
 オプションです。  
 有効な値は `Android`、`iOS`、`All`です。  
 デフォルト値は`All`です。
+
+`-b BASE_NAME`
+
+Androidでのみ有効なオプションです。
+指定された場合、出力するファイルのベースになる名前がこの値に変わります。
+
+    export_icons -i ic_my_icon -o out -t Android -b ic_my_icon
+
+結果:
+
+    out/Android/res/drawable-ldpi/ic_my_icon.png
+    out/Android/res/drawable-mdpi/ic_my_icon.png
+    out/Android/res/drawable-hdpi/ic_my_icon.png
+    out/Android/res/drawable-xhdpi/ic_my_icon.png
+    out/Android/res/drawable-xxhdpi/ic_my_icon.png
+
+`-s BASE_SIZE`
+
+Androidでのみ有効なオプションです。
+指定された場合、`mdpi`のピクセルが変わります。
+
+    export_icons -i ic_my_icon -o out -t Android -b ic_my_icon -s 32
+
+結果:
+
+    out/Android/res/drawable-ldpi/ic_my_icon.png -> 24px
+    out/Android/res/drawable-mdpi/ic_my_icon.png -> 32px
+    out/Android/res/drawable-hdpi/ic_my_icon.png -> 48px
+    out/Android/res/drawable-xhdpi/ic_my_icon.png -> 64px
+    out/Android/res/drawable-xxhdpi/ic_my_icon.png -> 96px
 
 `-v`
 

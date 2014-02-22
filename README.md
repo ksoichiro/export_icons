@@ -75,7 +75,7 @@ Or create symbolic link like this:
 
 ## Usage
 
-    ./export_icons.sh -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-v]
+    ./export_icons.sh -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]
 
 `-i INPUT_FILE`
 
@@ -99,6 +99,36 @@ Otherwise, skip if there are any existing output directories.
 Specifies target mobile OS. Optional.  
 Valid values are `Android`, `iOS` and `All`.  
 Default is `All`.
+
+`-b BASE_NAME`
+
+This is only available for Android.
+If set, change the base name of the output files.
+
+    export_icons -i ic_my_icon -o out -t Android -b ic_my_icon
+
+Result:
+
+    out/Android/res/drawable-ldpi/ic_my_icon.png
+    out/Android/res/drawable-mdpi/ic_my_icon.png
+    out/Android/res/drawable-hdpi/ic_my_icon.png
+    out/Android/res/drawable-xhdpi/ic_my_icon.png
+    out/Android/res/drawable-xxhdpi/ic_my_icon.png
+
+`-s BASE_SIZE`
+
+This is only available for Android.
+If set, change the `mdpi` pixel size.
+
+    export_icons -i ic_my_icon -o out -t Android -b ic_my_icon -s 32
+
+Result:
+
+    out/Android/res/drawable-ldpi/ic_my_icon.png -> 24px
+    out/Android/res/drawable-mdpi/ic_my_icon.png -> 32px
+    out/Android/res/drawable-hdpi/ic_my_icon.png -> 48px
+    out/Android/res/drawable-xhdpi/ic_my_icon.png -> 64px
+    out/Android/res/drawable-xxhdpi/ic_my_icon.png -> 96px
 
 `-v`
 

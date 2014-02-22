@@ -41,7 +41,7 @@ function help() {
   echo "Version ${VERSION}"
   echo "Copyright (c) 2013 Soichiro Kashima."
   echo ""
-  echo "Usage: $0 -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-v]"
+  echo "Usage: $0 -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]"
   echo "  -i INPUT_FILE"
   echo "    Input Inkscape file. Required."
   echo ""
@@ -59,6 +59,16 @@ function help() {
   echo "    Specifies target mobile OS. Optional."
   echo "    Valid values: ${OS_TYPE_ANDROID} | ${OS_TYPE_IOS} | ${OS_TYPE_ALL}"
   echo "    Optional. Default is '${OS_TYPE_ALL}'."
+  echo ""
+  echo "  -b BASE_NAME"
+  echo "    Base name of the output files."
+  echo "    Don't include extension."
+  echo "    Optional."
+  echo ""
+  echo "  -s BASE_SIZE"
+  echo "    Base size in pixel. Android only, and it is used for mdpi."
+  echo "    hdpi and upper size is automatically calculated."
+  echo "    Optional."
   echo ""
   echo "  -v"
   echo "    Enable verbose output."
@@ -89,15 +99,19 @@ if [ ! -f "${INKSCAPE}" ]; then
   exit 1
 fi
 
-while getopts i:o:ft:v flag
+while getopts b:i:o:fs:t:v flag
 do
   case ${flag} in
+    b)
+      base_name=${OPTARG};;
     i)
       input_file=${OPTARG};;
     f)
       force_overwrite=1;;
     o)
       output_dir=${OPTARG};;
+    s)
+      base_size=${OPTARG};;
     t)
       os_type=${OPTARG};;
     v)
@@ -114,8 +128,8 @@ if [ ! -f "${input_file}" ]; then
   echo "Input file not found: ${input_file}"
   exit 1
 fi
-basename=${input_file##*/}
-extension=${basename##*.}
+input_basename=${input_file##*/}
+extension=${input_basename##*.}
 if [ "x${extension}" != "xsvg" ]; then
   echo "WARNING: Extension ${extension} is not tested."
 fi
@@ -149,12 +163,35 @@ if [ "${os_type}" = "${OS_TYPE_ANDROID}" -o "${os_type}" = "${OS_TYPE_ALL}" ]; t
     fi
 
     # for Android
-    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-ldpi/${ICON_BASE_NAME_ANDROID}.png 36
-    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-mdpi/${ICON_BASE_NAME_ANDROID}.png 48
-    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-hdpi/${ICON_BASE_NAME_ANDROID}.png 72
-    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-xhdpi/${ICON_BASE_NAME_ANDROID}.png 96
-    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-xxhdpi/${ICON_BASE_NAME_ANDROID}.png 144
-    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/${ICON_BASE_NAME_ANDROID}-web.png 512
+    if [ -z "${base_name}" ]; then
+      base_name=${ICON_BASE_NAME_ANDROID}
+    fi
+    log "base name: ${base_name}"
+    size_ldpi=36
+    size_mdpi=48
+    size_hdpi=72
+    size_xhdpi=96
+    size_xhhdpi=144
+    if [ ! -z "${base_size}" ]; then
+      size_mdpi=${base_size}
+      size_hdpi=`echo "${size_mdpi}*1.5" | bc`
+      size_xhdpi=`echo "${size_mdpi}*2" | bc`
+      size_xxhdpi=`echo "${size_hdpi}*2" | bc`
+      size_ldpi=`echo "${size_hdpi}/2" | bc`
+      log "ldpi: ${size_ldpi}"
+      log "mdpi: ${size_mdpi}"
+      log "hdpi: ${size_hdpi}"
+      log "xhdpi: ${size_xhdpi}"
+      log "xxhdpi: ${size_xxhdpi}"
+    fi
+    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-ldpi/${base_name}.png ${size_ldpi}
+    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-mdpi/${base_name}.png ${size_mdpi}
+    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-hdpi/${base_name}.png ${size_hdpi}
+    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-xhdpi/${base_name}.png ${size_xhdpi}
+    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-xxhdpi/${base_name}.png ${size_xxhdpi}
+    if [ "${base_name}" = "${ICON_BASE_NAME_ANDROID}" ]; then
+      export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/${ICON_BASE_NAME_ANDROID}-web.png 512
+    fi
   fi
 fi
 
