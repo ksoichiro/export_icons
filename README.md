@@ -27,6 +27,8 @@ and the several sizes of icon are created like following:
 * XQuartz 2.7.4 or later
 * Your excellent icon svg files :)
 
+You can also use this tool from Docker.
+
 ## Supported files
 
 ### Input
@@ -75,7 +77,7 @@ Or create symbolic link like this:
 
 ## Usage
 
-    ./export_icons.sh -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]
+    ./export_icons.sh -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v] [-p PATH_TO_INKSCAPE]
 
 `-i INPUT_FILE`
 
@@ -133,6 +135,13 @@ Result:
 `-v`
 
 Enable verbose output.
+
+### Usage for Docker
+
+If you have `export_icons.sh` and `icon.svg` in current directory,
+then this will generate icons to `out` directory:
+
+    docker run -t -i -v `pwd`:/workspace -w /workspace ksoichiro/inkscape ./export_icons.sh -i icon.svg -o out -f -v -p /usr/bin/inkscape
 
 ## License
 

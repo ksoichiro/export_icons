@@ -70,6 +70,9 @@ function help() {
   echo "    hdpi and upper size is automatically calculated."
   echo "    Optional."
   echo ""
+  echo "  -p"
+  echo "    Inkscape path."
+  echo ""
   echo "  -v"
   echo "    Enable verbose output."
   echo ""
@@ -93,13 +96,7 @@ function export_png() {
   ${INKSCAPE} -z -C --file="${input_file}" --export-png="${output_file}" -w ${size} -h ${size} > /dev/null 2>&1
 }
 
-# Check inkscape command line binary
-if [ ! -f "${INKSCAPE}" ]; then
-  echo "Inkscape not found."
-  exit 1
-fi
-
-while getopts b:i:o:fs:t:v flag
+while getopts b:i:o:fs:t:vp: flag
 do
   case ${flag} in
     b)
@@ -116,8 +113,16 @@ do
       os_type=${OPTARG};;
     v)
       verbose=1;;
+    p)
+      INKSCAPE=${OPTARG};;
   esac
 done
+
+# Check inkscape command line binary
+if [ ! -f "${INKSCAPE}" ]; then
+  echo "Inkscape not found."
+  exit 1
+fi
 
 # Check arguments
 if [ -z "${input_file}" -o -z "${output_dir}" ]; then
