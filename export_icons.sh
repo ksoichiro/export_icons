@@ -28,7 +28,7 @@
 #
 ################################################################################
 
-VERSION=1.2
+VERSION=1.4
 INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 OS_TYPE_ANDROID=Android
 OS_TYPE_IOS=iOS
