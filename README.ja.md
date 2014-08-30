@@ -45,6 +45,7 @@ Pageのサイズは 1024x1024px で作成しておくことを推奨します。
 * `drawable-hdpi/ic_launcher.png` (72x72px)
 * `drawable-xdpi/ic_launcher.png` (96x96px)
 * `drawable-xxdpi/ic_launcher.png` (144x144px)
+* `drawable-xxxdpi/ic_launcher.png` (192x192px)
 * `ic_launcher-web.png` (512x512px)
 
 #### iOS用ファイル
