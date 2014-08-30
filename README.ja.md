@@ -69,6 +69,17 @@ Pageのサイズは 1024x1024px で作成しておくことを推奨します。
 
 ## インストール
 
+以下のいずれの場合でも、パスの通った位置にインストールした場合は実行時に`./`をつける必要はありません。
+
+### Homebrew
+
+```sh
+$ brew tap ksoichiro/export_icons
+$ brew install export_icons
+```
+
+### マニュアルインストール
+
 `export_icons`を`/usr/local/bin`のようなパスの通ったディレクトリに置いてください。  
 あるいは、次のようにシンボリックリンクを作ります。
 

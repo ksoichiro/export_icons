@@ -71,6 +71,17 @@ Following files will be generated.
 
 ## Install
 
+You don't have to add `./` in front of the `export_icons` command when you install it with following methods.
+
+### Homebrew
+
+```sh
+$ brew tap ksoichiro/export_icons
+$ brew install export_icons
+```
+
+### Maunal
+
 Just put the `export_icons` file to the directory like `/usr/local/bin`.  
 Or create symbolic link like this:
 
