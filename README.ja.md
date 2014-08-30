@@ -8,7 +8,7 @@ export_icons
 
 以下のように実行すると
 
-    ./export_icons.sh -i Icons.svg -o output
+    ./export_icons -i Icons.svg -o output
 
 次のように様々なサイズのアイコンが一括生成できます。
 
@@ -69,14 +69,14 @@ Pageのサイズは 1024x1024px で作成しておくことを推奨します。
 
 ## インストール
 
-`export_icons.sh`を`/usr/local/bin`のようなパスの通ったディレクトリに置いてください。  
+`export_icons`を`/usr/local/bin`のようなパスの通ったディレクトリに置いてください。  
 あるいは、次のようにシンボリックリンクを作ります。
 
-    ln -s /path/to/this/dir/export_icons.sh /usr/local/bin/export_icons
+    ln -s /path/to/this/dir/export_icons /usr/local/bin/export_icons
 
 ## 利用方法
 
-    ./export_icons.sh -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]
+    ./export_icons -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]
 
 `-i INPUT_FILE`
 
