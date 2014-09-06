@@ -183,18 +183,21 @@ if [ "${os_type}" = "${OS_TYPE_ANDROID}" -o "${os_type}" = "${OS_TYPE_ALL}" ]; t
       size_hdpi=`echo "${size_mdpi}*1.5" | bc`
       size_xhdpi=`echo "${size_mdpi}*2" | bc`
       size_xxhdpi=`echo "${size_hdpi}*2" | bc`
+      size_xxxhdpi=`echo "${size_mdpi}*4" | bc`
       size_ldpi=`echo "${size_hdpi}/2" | bc`
       log "ldpi: ${size_ldpi}"
       log "mdpi: ${size_mdpi}"
       log "hdpi: ${size_hdpi}"
       log "xhdpi: ${size_xhdpi}"
       log "xxhdpi: ${size_xxhdpi}"
+      log "xxxhdpi: ${size_xxxhdpi}"
     fi
     export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-ldpi/${base_name}.png ${size_ldpi}
     export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-mdpi/${base_name}.png ${size_mdpi}
     export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-hdpi/${base_name}.png ${size_hdpi}
     export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-xhdpi/${base_name}.png ${size_xhdpi}
     export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-xxhdpi/${base_name}.png ${size_xxhdpi}
+    export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/res/drawable-xxxhdpi/${base_name}.png ${size_xxxhdpi}
     if [ "${base_name}" = "${ICON_BASE_NAME_ANDROID}" ]; then
       export_png ${input_file} ${output_dir}/${OS_TYPE_ANDROID}/${ICON_BASE_NAME_ANDROID}-web.png 512
     fi
