@@ -92,8 +92,8 @@ function export_png() {
   if [ ! -d "${output_export_dir}" ]; then
     mkdir -p "${output_export_dir}"
   fi
-  log "Exporting input:${input_file} output:${output_file} size:${size}"
-  ${INKSCAPE} -z -C --file="${input_file}" --export-png="${output_file}" -w ${size} -h ${size} > /dev/null 2>&1
+  log "Exporting input:${input_file} output:${output_file} width:${size}"
+  ${INKSCAPE} -z -C --file="${input_file}" --export-png="${output_file}" -w ${size} > /dev/null 2>&1
 }
 
 while getopts b:i:o:fs:t:vp: flag
