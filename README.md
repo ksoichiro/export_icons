@@ -1,6 +1,8 @@
 export_icons
 ============
 
+[Japanese](README.ja.md)
+
 ## Introduction
 
 `export_icons` is an icon export tool using [Inkscape](http://inkscape.org/)
