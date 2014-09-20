@@ -8,7 +8,7 @@ export_icons
 
 以下のように実行すると
 
-    ./export_icons -i Icons.svg -o output
+    export_icons -i Icons.svg -o output
 
 次のように様々なサイズのアイコンが一括生成できます。
 
@@ -87,7 +87,7 @@ $ brew install export_icons
 
 ## 利用方法
 
-    ./export_icons -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]
+    export_icons -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v]
 
 `-i INPUT_FILE`
 
@@ -146,6 +146,13 @@ Androidでのみ有効なオプションです。
 `-v`
 
 詳細出力を有効にします。
+
+### Dockerでの使用方法
+
+`export_icons`のプログラムと`icon.svg`がカレントディレクトリにある場合は、
+以下のコマンドで`out`ディレクトリにアイコンが生成されます。
+
+    docker run -t -i -v `pwd`:/workspace -w /workspace ksoichiro/inkscape ./export_icons -i icon.svg -o out -f -v -p /usr/bin/inkscape
 
 ## ライセンス
 

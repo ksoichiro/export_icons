@@ -10,7 +10,7 @@ for mobile applications(Android/iOS).
 
 Execute
 
-    ./export_icons -i Icons.svg -o output
+    export_icons -i Icons.svg -o output
 
 and the several sizes of icon are created like following:
 
@@ -91,7 +91,7 @@ Or create symbolic link like this:
 
 ## Usage
 
-    ./export_icons -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v] [-p PATH_TO_INKSCAPE]
+    export_icons -i INPUT_FILE -o OUTPUT_DIR [-f] [-t OS_TYPE] [-b BASE_NAME] [-s BASE_SIZE] [-v] [-p PATH_TO_INKSCAPE]
 
 `-i INPUT_FILE`
 
