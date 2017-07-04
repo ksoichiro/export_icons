@@ -28,7 +28,7 @@
 #
 ################################################################################
 
-VERSION=1.4.3
+VERSION=1.4.4
 INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 OS_TYPE_ANDROID=Android
 OS_TYPE_IOS=iOS
@@ -218,24 +218,30 @@ if [ "${os_type}" = "${OS_TYPE_IOS}" -o "${os_type}" = "${OS_TYPE_ALL}" ]; then
       mkdir -p "${output_dir}/${OS_TYPE_IOS}"
     fi
 
-    # for iPhone
+    # for iOS 5
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}.png 57
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}@2x.png 114
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-Small.png 29
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-Small@2x.png 58
-    # for iPad
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-Small@3x.png 87
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-72.png 72
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-72@2x.png 144
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-Small-50.png 50
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-Small-50@2x.png 100
-    # for iOS7
-    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-40.png 40
+    # for iOS 7
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-40@2x.png 80
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-40@3x.png 120
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-20@2x.png 40
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-20@3x.png 60
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-60@2x.png 120
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-60@3x.png 180
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-20.png 20
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-40.png 40
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-76.png 76
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-76@2x.png 152
+    # for iOS 9
+    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/${ICON_BASE_NAME_IOS}-83_5@2x.png 167
     # for App Store
-    export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/iTunesArtwork.png 512
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/iTunesArtwork@2x.png 1024
   fi
 fi
