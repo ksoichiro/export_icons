@@ -29,7 +29,23 @@
 ################################################################################
 
 VERSION=1.4.4
-INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
+case "`uname`" in
+  'Linux')
+    INKSCAPE=/usr/bin/inkscape
+    ;;
+  'FreeBSD')
+    #Not tested
+    INKSCAPE=inkscape
+    ;;
+  'WindowsNT')
+    #Not tested
+    INKSCAPE=inkscape
+    ;;
+  #Mac
+  'Darwin')
+    INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
+    ;;
+esac
 OS_TYPE_ANDROID=Android
 OS_TYPE_IOS=iOS
 OS_TYPE_ALL=All
