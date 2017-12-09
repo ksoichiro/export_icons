@@ -93,7 +93,7 @@ $ brew tap ksoichiro/export_icons
 $ brew install export_icons
 ```
 
-### Maunal
+### Manual
 
 Just put the `export_icons` file to the directory like `/usr/local/bin`.  
 Or create symbolic link like this:
