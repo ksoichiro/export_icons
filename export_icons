@@ -32,6 +32,7 @@ VERSION=1.4.4
 INKSCAPE=/Applications/Inkscape.app/Contents/Resources/bin/inkscape
 OS_TYPE_ANDROID=Android
 OS_TYPE_IOS=iOS
+OS_TYPE_MACOS=macOS
 OS_TYPE_ALL=All
 ICON_BASE_NAME_ANDROID=ic_launcher
 ICON_BASE_NAME_IOS=Icon
@@ -52,12 +53,12 @@ function help() {
   echo "  -f"
   echo "    Optional."
   echo "    If set, overwrite existing output directories"
-  echo "    ('OUTPUT_DIR/${OS_TYPE_ANDROID}','OUTPUT_DIR/${OS_TYPE_IOS}')."
+  echo "    ('OUTPUT_DIR/${OS_TYPE_ANDROID}','OUTPUT_DIR/${OS_TYPE_IOS}','OUTPUT_DIR/${OS_TYPE_MACOS}')."
   echo "    Otherwise, skip if there are any existing output directories."
   echo ""
   echo "  -t OS_TYPE"
   echo "    Specifies target mobile OS. Optional."
-  echo "    Valid values: ${OS_TYPE_ANDROID} | ${OS_TYPE_IOS} | ${OS_TYPE_ALL}"
+  echo "    Valid values: ${OS_TYPE_ANDROID} | ${OS_TYPE_IOS} | ${OS_TYPE_MACOS} | ${OS_TYPE_ALL}"
   echo "    Optional. Default is '${OS_TYPE_ALL}'."
   echo ""
   echo "  -b BASE_NAME"
@@ -142,7 +143,7 @@ fi
 if [ -z ${os_type} ]; then
   os_type=${OS_TYPE_ALL}
 fi
-if [ "${os_type}" != "${OS_TYPE_ANDROID}" -a "${os_type}" != "${OS_TYPE_IOS}" -a "${os_type}" != "${OS_TYPE_ALL}" ]; then
+if [ "${os_type}" != "${OS_TYPE_ANDROID}" -a "${os_type}" != "${OS_TYPE_IOS}" -a "${os_type}" != "${OS_TYPE_MACOS}" -a "${os_type}" != "${OS_TYPE_ALL}" ]; then
   echo "WARNING: OS_TYPE ${os_type} is not valid. Use '${OS_TYPE_ALL}'."
   os_type=${OS_TYPE_ALL}
 fi
@@ -257,6 +258,37 @@ if [ "${os_type}" = "${OS_TYPE_IOS}" -o "${os_type}" = "${OS_TYPE_ALL}" ]; then
     #13. iOS Marketing 1024pt
     export_png ${input_file} ${output_dir}/${OS_TYPE_IOS}/13a-iOS-Marketing-1024.png 1024
     
+  fi
+fi
+
+
+if [ "${os_type}" = "${OS_TYPE_MACOS}" -o "${os_type}" = "${OS_TYPE_ALL}" ]; then
+  execute_macos=1
+  if [ -z "${force_overwrite}" ]; then
+    if [ -e "${output_dir}/${OS_TYPE_MACOS}" ]; then
+      echo "${output_dir}/${OS_TYPE_MACOS} is already exists."
+      exit 1
+    fi
+  fi
+
+  if [ ${execute_macos} -eq 1 ]; then
+    if [ ! -d "${output_dir}/${OS_TYPE_MACOS}" ]; then
+      mkdir -p "${output_dir}/${OS_TYPE_MACOS}"
+    fi
+
+    mkdir ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_16x16.png 16
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_32x32.png 32
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_128x128.png 128
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_256x256.png 256
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_512x512.png 512
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_16x16@2x.png 32
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_32x32@2x.png 64
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_128x128@2x.png 256
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_256x256@2x.png 512
+    export_png ${input_file} ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset/icon_512x512@2x.png 1024
+    
+    iconutil -c icns ${output_dir}/${OS_TYPE_MACOS}/iconbuilder.iconset
   fi
 fi
 

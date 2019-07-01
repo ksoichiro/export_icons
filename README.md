@@ -6,7 +6,7 @@ export_icons
 ## Introduction
 
 `export_icons` is an icon export tool using [Inkscape](http://inkscape.org/)
-for mobile applications(Android/iOS).
+for mobile applications(Android/iOS) and macOS.
 
 Execute
 
@@ -82,6 +82,12 @@ Following files will be generated.
 * `12a-iPad-Pro-App-83_5@2x.png` (167x167)
 * `13a-iOS-Marketing-1024.png` (1024x1024)
 
+#### for macOS
+
+Following files will be generated.
+
+* `iconbuilder.icns` (16x16, 32x32, 128x128, 256x256, 512x512, @1x and @2x)
+
 ## Install
 
 You don't have to add `./` in front of the `export_icons` command when you install it with following methods.
@@ -118,13 +124,13 @@ This directory will be automatically created.
 `-f`
 
 Optional.   
-If set, overwrite existing output directories(`OUTPUT_DIR/Android`, `OUTPUT_DIR/iOS`).  
+If set, overwrite existing output directories(`OUTPUT_DIR/Android`, `OUTPUT_DIR/iOS`, `OUTPUT_DIR/macOS`).  
 Otherwise, skip if there are any existing output directories.
 
 `-t OS_TYPE`
 
 Specifies target mobile OS. Optional.  
-Valid values are `Android`, `iOS` and `All`.  
+Valid values are `Android`, `iOS`, `macOS` and `All`.  
 Default is `All`.
 
 `-b BASE_NAME`
