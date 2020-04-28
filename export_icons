@@ -36,6 +36,7 @@ OS_TYPE_MACOS=macOS
 OS_TYPE_ALL=All
 ICON_BASE_NAME_ANDROID=ic_launcher
 ICON_BASE_NAME_IOS=Icon
+INKSCAPE_TYPE=new
 
 function help() {
   echo "export_icons - Inkscape Icon Export Script for Mobile Apps"
@@ -74,6 +75,9 @@ function help() {
   echo "  -p"
   echo "    Inkscape path."
   echo ""
+  echo "  -l"
+  echo "    Use Old Inkscape (X11 Inkscape)."
+  echo ""
   echo "  -v"
   echo "    Enable verbose output."
   echo ""
@@ -94,7 +98,12 @@ function export_png() {
     mkdir -p "${output_export_dir}"
   fi
   log "Exporting input:${input_file} output:${output_file} width:${size}"
-  ${INKSCAPE} -z -C --file="${input_file}" --export-png="${output_file}" -w ${size} > /dev/null 2>&1
+  
+  if [ $INKSCAPE_TYPE = "old" ]; then
+    ${INKSCAPE} -z -C --file="${input_file}" --export-png="${output_file}" -w ${size} > /dev/null 2>&1
+  else
+    ${INKSCAPE} -C --export-filename="${output_file}" -w ${size} ${input_file} > /dev/null 2>&1
+  fi
 }
 
 while getopts b:i:o:fs:t:vp: flag
@@ -116,6 +125,8 @@ do
       verbose=1;;
     p)
       INKSCAPE=${OPTARG};;
+    l)
+      INKSCAPE_TYPE=old;;
   esac
 done
 
